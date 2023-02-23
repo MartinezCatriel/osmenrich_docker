@@ -31,61 +31,26 @@ services:
     ports:
       - "8080:80"
       - "443:443"
-    depends_on:
-      - osrm-foot
-      - osrm-car
-      - osrm-bicycle
+    # depends_on:
+    #   - osrm-bicycle
     networks:
       - docker-network
 
-  # OSRM Server API
-  osrm-foot:
-    container_name: osrm-foot
-    restart: unless-stopped
-    build:
-      context: ./osrm
-      dockerfile: Dockerfile
-      args:
-        - NAME=osrm-foot
-        - COUNTRY_MAP=${COUNTRY_MAP}
-        - REGION=${REGION}
-        - PROFILE=foot
-    env_file: .env
-    image: osrm-foot
-    networks:
-      - docker-network
-
-  osrm-car:
-    container_name: osrm-car
-    restart: unless-stopped
-    build:
-      context: ./osrm
-      dockerfile: Dockerfile
-      args:
-        - NAME=osrm-car
-        - COUNTRY_MAP=${COUNTRY_MAP}
-        - REGION=${REGION}
-        - PROFILE=driving
-    env_file: .env
-    image: osrm-car
-    networks:
-      - docker-network
-
-  osrm-bicycle:
-    container_name: osrm-bicycle
-    restart: unless-stopped
-    build:
-      context: ./osrm
-      dockerfile: Dockerfile
-      args:
-        - NAME=osrm-cycling
-        - COUNTRY_MAP=${COUNTRY_MAP}
-        - REGION=${REGION}
-        - PROFILE=bicycle
-    env_file: .env
-    image: osrm-bicycle
-    networks:
-      - docker-network
+  # osrm-bicycle:
+  #   container_name: osrm-bicycle
+  #   restart: unless-stopped
+  #   build:
+  #     context: ./osrm
+  #     dockerfile: Dockerfile
+  #     args:
+  #       - NAME=osrm-cycling
+  #       - COUNTRY_MAP=${COUNTRY_MAP}
+  #       - REGION=${REGION}
+  #       - PROFILE=bicycle
+  #   env_file: .env
+  #   image: osrm-bicycle
+  #   networks:
+  #     - docker-network
 
 # Docker Networks
 networks:

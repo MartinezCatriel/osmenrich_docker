@@ -3,8 +3,8 @@ version: "3.8"
 services:
   # Overpass server API
   overpass-api:
-    container_name: overpass-api
-    hostname: overpass-api
+    container_name: overpass-api-base
+    hostname: overpass-api-base
     image: wiktorn/overpass-api
     restart: always
     ports:
@@ -18,12 +18,12 @@ services:
     env_file:
       - .env
     depends_on:
-      - nginx-proxy
+      - nginx-proxy-base
     networks:
       - docker-network
 
-  nginx-proxy:
-    container_name: nginx-proxy
+  nginx-proxy-base:
+    container_name: nginx-proxy-base
     image: nginx:alpine
     restart: unless-stopped
     volumes:

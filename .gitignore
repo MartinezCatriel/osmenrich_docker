@@ -27,3 +27,6 @@ Vagrantfile
 
 # From sodascience team
 *.pbf
+
+# Custom
+*.osm.pbf
